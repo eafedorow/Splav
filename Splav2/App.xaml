@@ -1,7 +1,7 @@
-﻿<Application x:Class="Splav2.App"
+﻿<Application x:Class="ProjectForModel.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Splav2"
+             xmlns:local="clr-namespace:ProjectForModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

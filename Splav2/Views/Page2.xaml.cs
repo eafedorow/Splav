@@ -16,19 +16,11 @@ using System.Windows.Shapes;
 namespace ProjectForModel.Views
 {
     /// <summary>
-<<<<<<<< HEAD:Splav2/Views/UserControlPrintPyScr.xaml.cs
-    /// Логика взаимодействия для UserControlPrintPyScr.xaml
+    /// Логика взаимодействия для Page2.xaml
     /// </summary>
-    public partial class UserControlPrintPyScr : UserControl
+    public partial class Page2 : Page
     {
-        public UserControlPrintPyScr()
-========
-    /// Логика взаимодействия для Page1.xaml
-    /// </summary>
-    public partial class Page1 : Page
-    {
-        public Page1()
->>>>>>>> 045b409 (Undo):Splav2/Views/Page1.xaml.cs
+        public Page2()
         {
             InitializeComponent();
         }
