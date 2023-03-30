@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Splav2.Views
+namespace ProjectForModel.Views
 {
     /// <summary>
-    /// Логика взаимодействия для FileSelection.xaml
+    /// Логика взаимодействия для Page2.xaml
     /// </summary>
-    public partial class FileSelection : Page
+    public partial class Page2 : Page
     {
-        public FileSelection()
+        public Page2()
         {
             InitializeComponent();
         }
