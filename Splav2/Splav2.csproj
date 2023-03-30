@@ -51,4 +51,8 @@
     <ProjectReference Include="..\MVVM\MVVM.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MVVM\MVVM.csproj" />
+  </ItemGroup>
+
 </Project>
