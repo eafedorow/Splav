@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjectForModel.ViewModels;
 
-namespace ProjectForModel
+namespace Splav2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

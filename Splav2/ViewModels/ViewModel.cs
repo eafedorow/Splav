@@ -7,14 +7,12 @@ using MVVM.Commands;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Navigation;
 using MVVM;
 using MVVM.Extensions;
 using Splav2.Abstractions;
 using Splav2.Models;
 
-namespace ProjectForModel.ViewModels
+namespace Splav2.ViewModel
 {
     /// <summary>
     /// Перенести page в модель и поместить их в массив
@@ -36,10 +34,10 @@ namespace ProjectForModel.ViewModels
         {
             _pageList.Add(new Views.Page1());
             _pageList.Add(new Views.Page2());
+            _pageList.Add(new Views.Page3());
             Win = new CurrentPageModel();
             Win.CurrentPage = _pageList[0];
             NextPage = new RelayCommand(Next, CanNext);
-           // Win.WhenPropertyChanged(x => x.CurrentPage, NextPage.RaiseCanExecuteChanged);
             PreviousPage = new RelayCommand(Previous, CanPrevious);
             Win.PropertyChanged += Win_PropertyChanged;
         }
@@ -54,10 +52,8 @@ namespace ProjectForModel.ViewModels
             if (!CanPrevious()) return;
             Win.CurrentPage = _pageList[_pageList.IndexOf(Win.CurrentPage) - 1];
         }
-
         private bool CanPrevious() => 
             _pageList.IndexOf(Win.CurrentPage) != 0;
-
         private void Win_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             NextPage.RaiseCanExecuteChanged();

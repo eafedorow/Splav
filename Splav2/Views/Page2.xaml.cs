@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectForModel.Views
+namespace Splav2.Views
 {
     /// <summary>
     /// Логика взаимодействия для Page2.xaml
