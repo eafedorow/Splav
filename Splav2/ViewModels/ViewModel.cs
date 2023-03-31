@@ -9,6 +9,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Navigation;
+using MVVM;
+using MVVM.Extensions;
+using Splav2.Abstractions;
+using Splav2.Models;
 
 namespace ProjectForModel.ViewModels
 {
@@ -17,47 +21,48 @@ namespace ProjectForModel.ViewModels
     /// Проверку делать на равенство первому или последнему элементу списка 
     /// По идеи все должно быть cool
     /// </summary>
-    class ViewModel: BaseViewModel { 
-        
+    internal class ViewModel: BindableBase
+    { 
+        /// <summary>
+        /// Заменил CurrentPage на Win чтобы не путаться! 
+        /// </summary>
         private List<Page> _pageList = new List<Page>();
-        private Page _currentPage;
-        public ICommand NextPage { get; }
+        public ICurrentPage Win { get; } 
+        public ICommand NextPage { get; }   
         public ICommand PreviousPage { get; }
-        public Page CurrentPage {
-            get
-            {
-                return _currentPage;
-            }
-            set
-            {
-                if (_currentPage == value) return;
-                SetProperty(ref _currentPage, value);
-                
-            }
-        }
+        
 
         public ViewModel()
         {
             _pageList.Add(new Views.Page1());
             _pageList.Add(new Views.Page2());
-            CurrentPage = _pageList[0];
+            Win = new CurrentPageModel();
+            Win.CurrentPage = _pageList[0];
             NextPage = new RelayCommand(Next, CanNext);
+           // Win.WhenPropertyChanged(x => x.CurrentPage, NextPage.RaiseCanExecuteChanged);
             PreviousPage = new RelayCommand(Previous, CanPrevious);
-        }
-        private void Next() {
-            var indexOf = _pageList.IndexOf(CurrentPage);
-            var b = (_pageList.IndexOf(CurrentPage) != 0) ? true : false;
-            CurrentPage = _pageList[indexOf == _pageList.Count - 1 ? 0 : indexOf + 1];
-            
-        }
-        private bool CanNext() => (_pageList.IndexOf(CurrentPage) != _pageList.Count - 1) ? true : false; // проверка на последний элемент
-        private void Previous() {
-            var indexOf = _pageList.IndexOf(CurrentPage);
-            var b = (_pageList.IndexOf(CurrentPage) != 0) ? true : false;
-            CurrentPage = _pageList[indexOf == 0 ? 0 : indexOf - 1];
+            Win.PropertyChanged += Win_PropertyChanged;
         }
 
-        private bool CanPrevious() => (_pageList.IndexOf(CurrentPage) != 0) ? true : true; 
+        private void Next() {
+            if (!CanNext()) return;
+            Win.CurrentPage = _pageList[_pageList.IndexOf(Win.CurrentPage) + 1];
+        }
+        private bool CanNext() => 
+            _pageList.IndexOf(Win.CurrentPage) != (_pageList.Count - 1); // проверка на последний элемент
+        private void Previous() {
+            if (!CanPrevious()) return;
+            Win.CurrentPage = _pageList[_pageList.IndexOf(Win.CurrentPage) - 1];
+        }
+
+        private bool CanPrevious() => 
+            _pageList.IndexOf(Win.CurrentPage) != 0;
+
+        private void Win_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NextPage.RaiseCanExecuteChanged();
+            PreviousPage.RaiseCanExecuteChanged();
+        }
 
     }
 }
