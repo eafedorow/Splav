@@ -27,6 +27,7 @@
             />
         
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="1,10,10,10">
+            <TextBlock x:Name="Result" Margin="0,0,15,0" Text="{Binding Res}"/>
             <Button Content="Назад"  Height="50" Width="100" Command="{Binding PreviousPage}" Margin="0,0,15,0"/>
             <Button Content="Далее"  Height="50" Width="100" Command="{Binding NextPage}"/>
         </StackPanel>

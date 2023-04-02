@@ -8,8 +8,10 @@ using System.Windows.Controls;
 
 namespace Splav2.Abstractions
 {
-    internal interface ICurrentPage: INotifyPropertyChanged
+    internal interface IProjectPage: INotifyPropertyChanged
     {
         Page CurrentPage { get; set; }
+        String DataBasepath { get; set; }
+        String PyScriptpath { get; set; }
     }
 }
