@@ -13,8 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Splav2.ViewModels;
 
-namespace ProjectForModel
+namespace Splav2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,7 +25,6 @@ namespace ProjectForModel
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModelMainWindow();
         }
     }
 }
