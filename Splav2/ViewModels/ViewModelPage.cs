@@ -25,7 +25,7 @@ namespace Splav2.ViewModels
         private async void ReadPythonFile()
         {
             string filepath = "main.py";
-            using (StreamReader read = new StreamReader(filepath))
+            using (StreamReader read = new(filepath))
             {
                 PythonScriptText = await read.ReadToEndAsync();
             }

@@ -90,10 +90,10 @@ namespace Splav2.ViewModels
         /// </summary>
         private void GoScript()
         {
-            ScriptEngine engine = Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-            engine.ExecuteFile("main.py", scope);
-            dynamic str = scope.GetVariable("str");
+            //ScriptEngine engine = Python.CreateEngine();
+            //ScriptScope scope = engine.CreateScope();
+            //engine.ExecuteFile("main.py", scope);
+            //dynamic str = scope.GetVariable("str");
         }
         private void Win_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
