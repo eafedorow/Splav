@@ -24,7 +24,6 @@ namespace Splav2
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModelMainWindow();
         }
     }
 }
