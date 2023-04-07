@@ -10,6 +10,7 @@ namespace Splav2.Abstractions
 {
     internal interface IProjectPage: INotifyPropertyChanged
     {
+        UserControl CurrentPage { get; set; }
         String DataBasepath { get; set; }
         String PyScriptpath { get; set; }
     }

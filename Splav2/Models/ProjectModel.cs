@@ -14,7 +14,13 @@ namespace Splav2.Models
         private static ProjectModel? model;
         private string _dataBasepath = "";
         private string _pyScriptpath = "";
-        
+        private UserControl _currentPage;
+        public UserControl CurrentPage
+        {
+            get => _currentPage;
+            set => SetProperty(ref _currentPage, value);
+        }
+
         public string DataBasepath
         {
             get => _dataBasepath;
