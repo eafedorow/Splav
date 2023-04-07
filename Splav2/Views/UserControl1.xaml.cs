@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Splav2.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Page3.xaml
+    /// Логика взаимодействия для UserControl1.xaml
     /// </summary>
-    public partial class Page3 : Page
+    public partial class UserControl1 : UserControl
     {
-        public Page3()
+        public UserControl1()
         {
             InitializeComponent();
         }

@@ -11,14 +11,9 @@ namespace Splav2.Models
 {
     internal class ProjectModel: BindableBase, IProjectPage
     {
-        private Page _currentPage;
-        private string _dataBasepath;
-        private string _pyScriptpath;
-        public Page CurrentPage 
-        {
-            get => _currentPage; 
-            set => SetProperty(ref _currentPage, value);
-        }
+        private string _dataBasepath = "";
+        private string _pyScriptpath = "";
+        
         public string DataBasepath
         {
             get => _dataBasepath;
