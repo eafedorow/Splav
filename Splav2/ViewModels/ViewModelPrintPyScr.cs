@@ -23,7 +23,7 @@ namespace Splav2.ViewModels
         {
             var model = ProjectModel.GetProjectModel();
             string falepath = model.PyScriptpath??="";
-            ReadPythonFile(falepath);
+            //ReadPythonFile(falepath);
         }
         private async void ReadPythonFile(string filepath)
         {
