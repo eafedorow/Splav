@@ -1,4 +1,5 @@
 ﻿using MVVM;
+using Splav2.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Windows.Resources;
 
 namespace Splav2.ViewModels
 {
-    internal class ViewModelPage : BindableBase
+    internal class ViewModelPrintPyScr : BindableBase
     {
         private string _pythonScriptText = "";
         public string PythonScriptText 
@@ -18,13 +19,13 @@ namespace Splav2.ViewModels
             set => SetProperty(ref _pythonScriptText, value); 
         }
 
-        public ViewModelPage()
+        public ViewModelPrintPyScr()
         {
-            ReadPythonFile();
+            var model = ProjectModel.GetProjectModel();
+            ReadPythonFile(model.PyScriptpath);
         }
-        private async void ReadPythonFile()
+        private async void ReadPythonFile(string filepath)
         {
-            string filepath = "main.py";
             using (StreamReader read = new(filepath))
             {
                 PythonScriptText = await read.ReadToEndAsync();

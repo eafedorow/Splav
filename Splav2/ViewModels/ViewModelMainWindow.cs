@@ -30,7 +30,7 @@ namespace Splav2.ViewModels
         /// Перенос реализации команд в отдельный файл
         /// </summary>
 
-        private List<UserControl> _pageList = new List<UserControl>();
+        private List<UserControl> _pageList = new();
         /// <summary>
         /// Наверно так ... 
         /// </summary>
@@ -92,8 +92,9 @@ namespace Splav2.ViewModels
         {
             //ScriptEngine engine = Python.CreateEngine();
             //ScriptScope scope = engine.CreateScope();
-            //engine.ExecuteFile("main.py", scope);
+            //engine.ExecuteFile("C:\\Users\\navip\\OneDrive\\Документы\\GitHub\\Splav\\main.py", scope);
             //dynamic str = scope.GetVariable("str");
+            //MessageBox.Show(str);
         }
         private void Win_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
