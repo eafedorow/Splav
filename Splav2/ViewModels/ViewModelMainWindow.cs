@@ -61,7 +61,7 @@ namespace Splav2.ViewModels
             _pageList.Add(new Views.UserControl1());
             //_pageList.Add(new Views.Page2());
             //_pageList.Add(new Views.Page3());
-            Win = new ProjectModel();
+            Win = ProjectModel.GetProjectModel();
 
             CurrentPage = _pageList[0];
             NextPage = new RelayCommand(Next, CanNext);

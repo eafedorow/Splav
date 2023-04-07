@@ -15,18 +15,20 @@ namespace Splav2.ViewModels
         public string PythonScriptText 
         {
             get => _pythonScriptText; 
-            set => _pythonScriptText = value; 
+            set => SetProperty(ref _pythonScriptText, value); 
         }
 
         public ViewModelPage()
         {
+            ReadPythonFile();
+        }
+        private async void ReadPythonFile()
+        {
             string filepath = "main.py";
             using (StreamReader read = new StreamReader(filepath))
             {
-               //string text = await read.ReadToEndAsync();
-
+                PythonScriptText = await read.ReadToEndAsync();
             }
-
         }
     }
 }

@@ -16,6 +16,6 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="PrintScript" Grid.Column="1" Text="ТУТ будет текст скрипта" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="PrintScript" Grid.Column="1" Text="{Binding PythonScriptText}" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>
