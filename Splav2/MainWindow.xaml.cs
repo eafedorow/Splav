@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectForModel.ViewModels;
 
 namespace ProjectForModel
 {
@@ -25,6 +24,7 @@ namespace ProjectForModel
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModelMainWindow();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Splav2.ViewModels
         /// Перенос реализации команд в отдельный файл
         /// </summary>
 
-        private List<UserControl> _pageList = new();
+        private List<UserControl> _pageList = new List<UserControl>();
         /// <summary>
         /// Наверно так ... 
         /// </summary>
