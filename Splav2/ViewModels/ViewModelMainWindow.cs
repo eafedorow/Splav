@@ -58,7 +58,7 @@ namespace Splav2.ViewModels
         /// </summary>
         public ViewModelMainWindow()
         {
-            _pageList.Add(new Views.UserControl1());
+            _pageList.Add(new Views.UserControlPrintPyScr());
             //_pageList.Add(new Views.Page2());
             //_pageList.Add(new Views.Page3());
             Win = ProjectModel.GetProjectModel();
