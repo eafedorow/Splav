@@ -11,6 +11,7 @@ namespace Splav2.Models
 {
     internal class ProjectModel: BindableBase, IProjectPage
     {
+        private static ProjectModel model;
         private string _dataBasepath = "";
         private string _pyScriptpath = "";
         
@@ -23,6 +24,12 @@ namespace Splav2.Models
         {
             get => _pyScriptpath;
             set=> SetProperty(ref _pyScriptpath, value);
+        }
+        private ProjectModel() { }
+        public static ProjectModel GetProjectModel()
+        {
+            if (model == null) model = new ProjectModel();
+            return model;
         }
     }
 }
