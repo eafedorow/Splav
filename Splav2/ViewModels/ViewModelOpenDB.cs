@@ -3,9 +3,10 @@ using ExcelDataReader;
 using Microsoft.Win32;
 using MVVM;
 using MVVM.Commands;
-using OfficeOpenXml;
 using Splav2.Models;
 using Splav2.Views;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Controls;
@@ -16,13 +17,40 @@ namespace Splav2.ViewModels
 {
     internal class ViewModelOpenDB : BindableBase
     {
-
+        private DataTable _databases = new DataTable();
+        public DataTable Databases
+        {
+            get { return _databases; }
+            set
+            {
+                if (_databases != value)
+                {
+                    SetProperty(ref _databases, value);
+                }
+            }
+        }
 
         public ViewModelOpenDB()
-        { }
+        {
+            
+        }
 
         private int _rowCount;
         private int _columnCount;
+
+        private string _filePath = "";
+
+        public string FilePath
+        {
+            get { return _filePath; }
+            set
+            {
+                if (_filePath != value)
+                {
+                    SetProperty(ref _filePath, value);
+                }
+            }
+        }
 
         public int RowCount
         {
@@ -35,6 +63,7 @@ namespace Splav2.ViewModels
                 }
             }
         }
+
 
         public int ColumnCount
         {
@@ -83,30 +112,34 @@ namespace Splav2.ViewModels
             openFileDialog.Filter = "EXCEL Files (*.xlsx)|*.xlsx|EXCEL Files 2003 (*.xls)|*.xls|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() != true)
                 return;
+            FilePath = openFileDialog.FileName;
             var model = ProjectModel.Instance;
-            var filename = openFileDialog.FileName;
-            model.DataBasepath = filename;
+            model.DataBasepath = FilePath;
+            ReadExcel();
             //ReadExcelData(filename);
+            //Workbook workbook = new Workbook(FilePath);
+            //Worksheet worksheet = workbook.Worksheets[0];
+            // Получить количество строк и столбцов
+            //RowCount = worksheet.Cells.MaxDataRow;
+            //ColumnCount = worksheet.Cells.MaxDataColumn;
+            //DataTable = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true);
+            //dataGrid.ItemsSource = dataTable.DefaultView;
+
+
+        }
+
+        public void ReadExcel()
+        {
+            Workbook workbook = new Workbook(FilePath);
+            Worksheet worksheet = workbook.Worksheets[0];
+            // Получить количество строк и столбцов
+            RowCount = worksheet.Cells.MaxDataRow;
+            ColumnCount = worksheet.Cells.MaxDataColumn;
+            DataTable dataTable = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true);
+            Databases = dataTable;
         }
 
 
-        /*private void PerformOpenExcel()
-          {
-              OpenFileDialog openFileDialog = new OpenFileDialog();
-              openFileDialog.Filter = "EXCEL Files (*.xlsx)|*.xlsx|EXCEL Files 2003 (*.xls)|*.xls|All files (*.*)|*.*";
-              if (openFileDialog.ShowDialog() != true)
-                  return;
-
-               = ReadExcelData(openFileDialog.FileName);
-
-              /*if (openFileDialog.ShowDialog() == true)
-              {
-                  _filePath = openFileDialog.FileName;
-                  _excelData = ReadExcelData(openFileDialog.FileName);
-                  _rowCount = _excelData.Rows.Count;
-                  _columnCount = _excelData.Columns.Count;
-              }//
-          }*/
 
     }
 }
