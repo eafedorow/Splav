@@ -27,7 +27,7 @@ namespace Splav2.ViewModels
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var model = ProjectModel.GetProjectModel();
+                var model = ProjectModel.Instance;
                 //string scriptText = File.ReadAllText(openFileDialog.FileName);
                 string filename = openFileDialog.FileName;
                 model.PyScriptpath = filename;

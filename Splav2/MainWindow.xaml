@@ -11,7 +11,7 @@
 		Title="Проект по C#" Height="450" Width="800">
 
     <Window.DataContext>
-        <viewModels:ViewModelMainWindow/>
+        <viewModel:ViewModelMainWindow/>
     </Window.DataContext>
     <ContentControl.Resources>
         <DataTemplate DataType="{x:Type viewModel:ViewModelPrintPyScr}">
