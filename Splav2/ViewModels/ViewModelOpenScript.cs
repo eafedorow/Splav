@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MVVM;
 using MVVM.Commands;
+using Splav2.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,10 @@ namespace Splav2.ViewModels
 
             if (openFileDialog.ShowDialog() == true)
             {
-                string scriptText = File.ReadAllText(openFileDialog.FileName);
+                var model = ProjectModel.GetProjectModel();
+                //string scriptText = File.ReadAllText(openFileDialog.FileName);
                 string filename = openFileDialog.FileName;
+                model.PyScriptpath = filename;
             }
         }
     }
