@@ -21,6 +21,6 @@
         <TextBlock Text="{Binding FilePath}" Grid.Row="1" Margin="5"/>
         <TextBlock Text="{Binding RowCount, StringFormat='Rows: {0}'}" Grid.Row="2" Margin="5"/>
         <TextBlock Text="{Binding ColumnCount, StringFormat='Columns: {0}'}" Grid.Row="3" Margin="5"/>
-        <DataGrid ItemsSource="{Binding ReadExcelData}" Grid.Row="4" Margin="5"/>
+        <DataGrid ItemsSource="{Binding Databases}" Grid.Row="4" Margin="5" AutoGenerateColumns="True"/>
     </Grid>
 </UserControl>
