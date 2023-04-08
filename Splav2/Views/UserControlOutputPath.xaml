@@ -7,16 +7,17 @@
              xmlns:local="clr-namespace:Splav2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance viewModel:ViewModelPrintPyScr}">
+             d:DataContext="{d:DesignInstance viewModel:ViewModeOutputPath}">
 
     <Grid Background="LightCoral">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="50"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <Label Content="Путь к созданой модели"/>
             <TextBlock Text="{Binding OutputPath}"/>
         </StackPanel>
+        <Button Grid.Row="1" Content="Запустить скрипт" Command="{Binding StartCommand}"/>
     </Grid>
 </UserControl>

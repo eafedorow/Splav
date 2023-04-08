@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -115,7 +116,7 @@ namespace Splav2.ViewModels
             FilePath = openFileDialog.FileName;
             var model = ProjectModel.Instance;
             model.DataBasepath = FilePath;
-            ReadExcel();
+            var task = Task.Run(()=>ReadExcel());
             //ReadExcelData(filename);
             //Workbook workbook = new Workbook(FilePath);
             //Worksheet worksheet = workbook.Worksheets[0];
@@ -135,8 +136,8 @@ namespace Splav2.ViewModels
             // Получить количество строк и столбцов
             RowCount = worksheet.Cells.MaxDataRow;
             ColumnCount = worksheet.Cells.MaxDataColumn;
-            DataTable dataTable = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true);
-            Databases = dataTable;
+            Databases = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true); // Записал на прямую и сделал попытку ленивой загрузки
+            //Databases = dataTable; // DataTable dataTable
         }
 
 
