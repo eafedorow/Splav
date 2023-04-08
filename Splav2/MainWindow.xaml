@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type viewModel:ViewModelOpenDB}">
             <view:UserControlOpenDB/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ViewModelOpenScript}">
+            <view:UserControlOpenScript/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ViewModelPrintPyScr}">
             <view:UserControlPrintPyScr/>
         </DataTemplate>

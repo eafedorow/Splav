@@ -52,6 +52,7 @@ namespace Splav2.ViewModels
         public ViewModelMainWindow()
         {
             _pageList.Add(new ViewModelOpenDB());
+            _pageList.Add(new ViewModelOpenScript());
             _pageList.Add(new ViewModelPrintPyScr());
             _pageList.Add(new ViewModeOutputPath());
             Win = ProjectModel.Instance;
