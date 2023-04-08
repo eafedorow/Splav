@@ -23,7 +23,7 @@ namespace Splav2.ViewModels
         }
 
         public ViewModeOutputPath() {
-            var model = ProjectModel.GetProjectModel();
+            var model = ProjectModel.Instance;
             string dbpath = model.DataBasepath;
             string scriptpath = model.PyScriptpath;
             if (dbpath != "" && scriptpath != "")

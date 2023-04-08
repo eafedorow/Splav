@@ -28,7 +28,7 @@ namespace Splav2.ViewModels
         /// Перенос реализации команд в отдельный файл
         /// </summary>
 
-        private List<UserControl> _pageList = new();
+        private List<BindableBase> _pageList = new();
         /// <summary>
         /// Наверно так ... 
         /// </summary>
@@ -51,13 +51,14 @@ namespace Splav2.ViewModels
         /// </summary>
         public ViewModelMainWindow()
         {
-            _pageList.Add(new Views.UserControlPrintPyScr());
-            _pageList.Add(new Views.UserControlOutputPath());
-            Win = ProjectModel.GetProjectModel();
+            _pageList.Add(new ViewModelPrintPyScr());
+            _pageList.Add(new ViewModeOutputPath());
+            Win = ProjectModel.Instance;
             Win.CurrentPage = _pageList[0];
             NextPage = new RelayCommand(Next, CanNext);
             PreviousPage = new RelayCommand(Previous, CanPrevious);
-            Win.PropertyChanged += Win_PropertyChanged;
+            Win.WhenPropertyChanged(x => x.CurrentPage, OnCurrentPageChanged);
+            
         }
 
         private void Next()
@@ -74,13 +75,11 @@ namespace Splav2.ViewModels
         }
         private bool CanPrevious() =>
             _pageList.IndexOf(Win.CurrentPage) != 0;
-
-        private void Win_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnCurrentPageChanged()
         {
-            NextPage.RaiseCanExecuteChanged();
+            NextPage.RaiseCanExecuteChanged(); 
             PreviousPage.RaiseCanExecuteChanged();
         }
-
     }
 }
 
