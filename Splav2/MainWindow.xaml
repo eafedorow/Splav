@@ -11,9 +11,12 @@
 		Title="Проект по C#" Height="450" Width="800">
 
     <Window.DataContext>
-        <viewModels:ViewModelMainWindow/>
+        <viewModel:ViewModelMainWindow/>
     </Window.DataContext>
     <ContentControl.Resources>
+        <DataTemplate DataType="{x:Type viewModel:ViewModelOpenDB}">
+            <view:UserControlOpenDB/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ViewModelPrintPyScr}">
             <view:UserControlPrintPyScr/>
         </DataTemplate>
@@ -31,7 +34,6 @@
         <ContentControl
             Grid.Row="0"
             Content="{Binding Win.CurrentPage}"
-            x:Name="mainWindow"
             />
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="1,10,10,10">
