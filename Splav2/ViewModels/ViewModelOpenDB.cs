@@ -54,7 +54,7 @@ namespace Splav2.ViewModels
 
 
 
-        private DataView ReadExcelData(string filePath)
+       /* private DataView ReadExcelData(string filePath)
         {
             Workbook wb = new Workbook(filePath);
             WorksheetCollection collection = wb.Worksheets;
@@ -64,14 +64,14 @@ namespace Splav2.ViewModels
                 Worksheet worksheet = collection[worksheetIndex];
 
             }
-            /*// Читаем, получаем DataView и работаем с ним как обычно.
+            // Читаем, получаем DataView и работаем с ним как обычно.
             DataSet dataSet = edr.AsDataSet(conf);
             DataView dtView = dataSet.Tables[0].AsDataView();
 
             // После завершения чтения освобождаем ресурсы.
             edr.Close();
-            return dtView;*/
-        }
+            return dtView;
+        }*/
 
         private RelayCommand openExcel;
         public ICommand OpenExcel => openExcel ??= new RelayCommand(PerformOpenExcel);
@@ -83,10 +83,10 @@ namespace Splav2.ViewModels
             openFileDialog.Filter = "EXCEL Files (*.xlsx)|*.xlsx|EXCEL Files 2003 (*.xls)|*.xls|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() != true)
                 return;
-            var model = ProjectModel.GetProjectModel();
+            var model = ProjectModel.Instance;
             var filename = openFileDialog.FileName;
             model.DataBasepath = filename;
-            ReadExcelData(filename);
+            //ReadExcelData(filename);
         }
 
 
