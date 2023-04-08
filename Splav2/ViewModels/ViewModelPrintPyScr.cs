@@ -21,9 +21,9 @@ namespace Splav2.ViewModels
 
         public ViewModelPrintPyScr()
         {
-            var model = ProjectModel.GetProjectModel();
-            string falepath = model.PyScriptpath??="";
-            ReadPythonFile(falepath);
+            var model = ProjectModel.Instance;
+            string filepath = model.PyScriptpath;
+            if (filepath != "") ReadPythonFile(model.PyScriptpath);
         }
         private async void ReadPythonFile(string filepath)
         {

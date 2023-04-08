@@ -14,7 +14,13 @@ namespace Splav2.Models
         private static ProjectModel? model;
         private string _dataBasepath = "";
         private string _pyScriptpath = "";
-        
+        private BindableBase _currentPage;
+        public  BindableBase CurrentPage
+        {
+            get => _currentPage;
+            set => SetProperty(ref _currentPage, value);
+        }
+
         public string DataBasepath
         {
             get => _dataBasepath;
@@ -26,10 +32,6 @@ namespace Splav2.Models
             set=> SetProperty(ref _pyScriptpath, value);
         }
         private ProjectModel() { }
-        public static ProjectModel GetProjectModel()
-        {
-            model ??= new ProjectModel();
-            return model;
-        }
+        public static ProjectModel Instance => model ??= new ProjectModel();
     }
 }
