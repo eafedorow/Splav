@@ -12,6 +12,7 @@ using System.Windows;
 using Splav2.Models;
 using System.Windows.Input;
 using MVVM.Commands;
+using System.IO;
 
 namespace Splav2.ViewModels
 {
@@ -37,7 +38,7 @@ namespace Splav2.ViewModels
             {
                 GoScript(dbpath, scriptpath); // Вызов обработки файла 
             }
-            else MessageBox.Show("Отсутствует путь к бд или скриату!!!");
+            else MessageBox.Show("Отсутствует путь к бд или скрипту!!!");
 
         }
 
