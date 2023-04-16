@@ -17,20 +17,33 @@ namespace Splav2.ViewModels
     {
         public ViewModelOpenScript() { }
 
-        private RelayCommand openScript;
-        public ICommand OpenScript => openScript ??= new RelayCommand(PerformOpenScript);
+        private RelayCommand openScriptPy;
 
-        private void PerformOpenScript()
+        private string _filePath = "";
+
+        public string FilePath
+        {
+            get { return _filePath; }
+            set
+            {
+                if (_filePath != value)
+                {
+                    SetProperty(ref _filePath, value);
+                }
+            }
+        }
+        public ICommand OpenScriptPy => openScriptPy ??= new RelayCommand(PerformOpenScriptPy);
+
+        private void PerformOpenScriptPy()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Python Scripts (*.py)|*.py";
 
             if (openFileDialog.ShowDialog() == true)
             {
+                FilePath = openFileDialog.FileName;
                 var model = ProjectModel.Instance;
-                //string scriptText = File.ReadAllText(openFileDialog.FileName);
-                string filename = openFileDialog.FileName;
-                model.PyScriptpath = filename;
+                model.PyScriptpath = FilePath;
             }
         }
     }

@@ -11,6 +11,7 @@
              >
     
     <Grid Background="White">
-        <Button Content="Обзор" Width="50" Height="25" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding OpenScript}"/>
+        <Button Content="Обзор" Width="50" Height="25" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding OpenScriptPy}"/>
+        <TextBlock Text="{Binding FilePath}" Margin="20,54,20,28"/>
     </Grid>
 </UserControl>
