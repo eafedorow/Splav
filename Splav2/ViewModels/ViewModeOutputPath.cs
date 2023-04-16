@@ -10,11 +10,15 @@ using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using System.Windows;
 using Splav2.Models;
+using System.Windows.Input;
+using MVVM.Commands;
+using System.IO;
 
 namespace Splav2.ViewModels
 {
     internal class ViewModeOutputPath: BindableBase
     {
+        public ICommand StartCommand { get; }
         private string _outputPath = "";
         public string OutputPath 
         { 
@@ -23,6 +27,10 @@ namespace Splav2.ViewModels
         }
 
         public ViewModeOutputPath() {
+            StartCommand = new RelayCommand(StartExamination);
+        }
+
+        private void StartExamination() {
             var model = ProjectModel.Instance;
             string dbpath = model.DataBasepath;
             string scriptpath = model.PyScriptpath;
@@ -30,15 +38,17 @@ namespace Splav2.ViewModels
             {
                 GoScript(dbpath, scriptpath); // Вызов обработки файла 
             }
+            else MessageBox.Show("Отсутствует путь к бд или скрипту!!!");
+
         }
 
         private void GoScript(string dbpath, string scriptpath)
         {
             ScriptEngine engine = Python.CreateEngine();
             ScriptScope scope = engine.CreateScope();
-            scope.SetVariable("dbpath", dbpath);
+            scope.SetVariable("db_path", dbpath);
             engine.ExecuteFile(scriptpath, scope);
-            OutputPath = scope.GetVariable("modelpath");
+            OutputPath = scope.GetVariable("model_path");
         }
     }
 }
