@@ -13,12 +13,15 @@ using Splav2.Models;
 using System.Windows.Input;
 using MVVM.Commands;
 using System.IO;
+using System.Threading;
 
 namespace Splav2.ViewModels
 {
     internal class ViewModeOutputPath: BindableBase
     {
+        private CancellationTokenSource source = new CancellationTokenSource();
         public ICommand StartCommand { get; }
+        public ICommand StopCommand { get; }
         private string _outputPath = "";
         public string OutputPath 
         { 
@@ -28,27 +31,29 @@ namespace Splav2.ViewModels
 
         public ViewModeOutputPath() {
             StartCommand = new RelayCommand(StartExamination);
+            StopCommand = new RelayCommand(StopExamination);
+
         }
 
-        private void StartExamination() {
+        /// <summary>
+        /// Сама кнопка есть, надо настроить ее видимость, скорее всего через costum nastr
+        /// </summary>
+        private async void StartExamination() {
             var model = ProjectModel.Instance;
             string dbpath = model.DataBasepath;
             string scriptpath = model.PyScriptpath;
             if (dbpath != "" && scriptpath != "")
             {
-                GoScript(dbpath, scriptpath); // Вызов обработки файла 
+                string processName = $"C:\\Windows\\py.exe \"{scriptpath}\" \"{dbpath}\"";
+                var proc = System.Diagnostics.Process.Start(processName);
+                await proc.WaitForExitAsync(source.Token);
+                MessageBox.Show("Complit script!");
             }
             else MessageBox.Show("Отсутствует путь к бд или скрипту!!!");
-
         }
-
-        private void GoScript(string dbpath, string scriptpath)
+        private void StopExamination()
         {
-            ScriptEngine engine = Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-            scope.SetVariable("db_path", dbpath);
-            engine.ExecuteFile(scriptpath, scope);
-            OutputPath = scope.GetVariable("model_path");
+            source.Cancel();
         }
     }
 }
