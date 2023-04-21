@@ -44,7 +44,7 @@ namespace Splav2.ViewModels
             string scriptpath = model.PyScriptpath;
             if (dbpath != "" && scriptpath != "")
             {
-                string processName = $"C:\\Windows\\py.exe \"{scriptpath}\" \"{dbpath}\"";
+                string processName = $"C:\\Windows\\py.exe \"{scriptpath} {dbpath}\"";
                 var proc = System.Diagnostics.Process.Start(processName);
                 await proc.WaitForExitAsync(source.Token);
                 MessageBox.Show("Complit script!");
