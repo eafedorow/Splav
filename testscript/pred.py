@@ -8,7 +8,7 @@ import xgboost
 from sklearn import metrics
 
 
-def create_model(db_path):
+def create_model(db_path: str):
     df = pd.read_excel(db_path)
     # sizes = df['плена 0/1+'].value_counts(sort=1)
     # print(sizes)
@@ -77,8 +77,13 @@ def create_model(db_path):
     # conf_mat = pd.DataFrame(conf_mat, index=model.classes_, columns=model.classes_)
     # print(conf_mat)
 
-    # Его надо отдать наружу
-    model_path = 'model.txt'
+    # Обрезать путь бд и сюда
+    split_path = db_path.split('\\')
+    split_path[-1] = 'model.txt'
+    model_path = ''
+    for ind in split_path:
+        model_path += '\\' + ind
+    model_path = model_path[1:]
 
     with open(model_path, "wb") as f:
         pc.dump(model, f)
@@ -91,5 +96,4 @@ def create_model(db_path):
 
 
 if __name__ == '__main__':
-    create_model(sys.argv[1])  # train_data.xlsx
-
+    create_model(r'C:\Users\navip\OneDrive\Документы\GitHub\Splav\testscript\train_data.xlsx')  # train_data.xlsx sys.argv[1]
