@@ -15,7 +15,6 @@ using MVVM.Commands;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
-using static IronPython.Modules._ast;
 using MVVM.Extensions;
 
 namespace Splav2.ViewModels
