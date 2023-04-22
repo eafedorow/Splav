@@ -11,9 +11,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM", "MVVM\MVVM.csproj", "{4E53243C-E6CC-414C-943E-2DD4D5269C0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{B53B4DB5-CEC8-48E0-9016-7687C02C42EE}"
-	ProjectSection(SolutionItems) = preProject
-		pred.py = pred.py
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

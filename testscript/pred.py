@@ -96,4 +96,5 @@ def create_model(db_path: str):
 
 
 if __name__ == '__main__':
-    create_model(r'C:\Users\navip\OneDrive\Документы\GitHub\Splav\testscript\train_data.xlsx')  # train_data.xlsx sys.argv[1]
+    create_model(sys.argv[1])  # train_data.xlsx
+
