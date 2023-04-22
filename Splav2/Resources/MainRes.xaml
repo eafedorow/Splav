@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle">
+        <Setter Property="TextBlock.FontFamily" Value="Segoe Print"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+        <Setter Property="Button.FontFamily" Value="Segoe Print"/>
+        <Setter Property="Button.FontSize" Value="14"/>
+        <Setter Property="Button.Foreground" Value="Black"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Label}" x:Key="LabelStyle">
+        <Setter Property="Label.FontFamily" Value="Segoe Print"/>
+        <Setter Property="Label.FontSize" Value="14"/>
+        <Setter Property="Label.Foreground" Value="White"/>
+    </Style>
+</ResourceDictionary>

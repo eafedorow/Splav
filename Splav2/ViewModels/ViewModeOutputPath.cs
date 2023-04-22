@@ -22,7 +22,7 @@ namespace Splav2.ViewModels
 {
     internal class ViewModeOutputPath: BindableBase
     {
-        private CancellationTokenSource source = new CancellationTokenSource();
+        private CancellationTokenSource source;
         private bool _stop = false;
         public bool Stop 
         {
@@ -40,7 +40,7 @@ namespace Splav2.ViewModels
 
         public ViewModeOutputPath() {
             StartCommand = new RelayCommand(StartExamination);
-            StopCommand = new RelayCommand(StopExamination,CanStop);
+            StopCommand = new RelayCommand(StopExamination, CanStop);
             this.WhenPropertyChanged(x => x.Stop, OnStop);
         }   
 
@@ -48,31 +48,37 @@ namespace Splav2.ViewModels
         /// Сама кнопка есть, надо настроить ее видимость, скорее всего через costum nastr
         /// </summary>
         private async void StartExamination() {
+            source = new CancellationTokenSource();
             var model = ProjectModel.Instance;
             string dbpath = model.DataBasepath;
             string scriptpath = model.PyScriptpath;
             if (dbpath != "" && scriptpath != "")
             {
+                Process? proc = null;
                 try
                 {
                     Stop = true;
                     string processName = $"\"C:\\Windows\\py.exe {scriptpath} {dbpath}\"";
-                    var proc = Process.Start("cmd", $"/c {processName}");
+                    proc = Process.Start("cmd", $"/c {processName}");
                     await proc.WaitForExitAsync(source.Token);
                     await Task.Delay(3000);
                     MessageBox.Show("Complit script!"); // Впринципи это можно убрать (уточнить вопрос про /q echo off)
                 }
                 catch (System.Threading.Tasks.TaskCanceledException)
                 {
-                    /// Надо ли делать тут что-либо! Хотя зачем....
+                    if (proc != null) {
+                        if (!proc.HasExited) {
+                            proc.Kill();
+                        }
+                    }
                 }
-                Stop = false;
             }
             else MessageBox.Show("Отсутствует путь к бд или скрипту!!!");
+            Stop = false;
         }
         private void StopExamination()
         {
-            source.Cancel();
+            source?.Cancel();
         }
         private bool CanStop() => Stop;
         private void OnStop()
