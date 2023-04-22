@@ -38,7 +38,7 @@
         </Grid.ColumnDefinitions>
         <ContentControl
             Grid.Column="0"
-            Content="{Binding Win.CurrentPage}" HorizontalAlignment="Left" Width="790"/>
+            Content="{Binding Win.CurrentPage}" HorizontalAlignment="Left" Width="800"/>
         <Grid Grid.Column="1" Margin="5,0,-5,0">
             <Grid.RowDefinitions>
                 <RowDefinition ></RowDefinition>

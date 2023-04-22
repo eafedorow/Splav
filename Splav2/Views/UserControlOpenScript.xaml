@@ -11,8 +11,8 @@
              >
     <Border BorderBrush = "White" BorderThickness="2" >
         <Grid >
-            <Button Content="Обзор" Width="100" Height="30"  HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding OpenScriptPy}"/>
-            <TextBlock Text="{Binding FilePath}"  Margin="20,54,26,28" Foreground="White" TextWrapping="Wrap" />
+            <Button Content="Обзор" Width="100" Height="30"  HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding OpenScriptPy}" Style="{StaticResource ButtonStyle}"/>
+            <TextBlock Text="{Binding FilePath}"  Margin="20,54,26,28" Foreground="White" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" />
         </Grid>
     </Border>
 </UserControl>
